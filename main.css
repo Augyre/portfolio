@@ -411,7 +411,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 895px;
+    width: auto;
     height: 396px;
     padding: 48px;
     margin: 0 auto;
@@ -419,69 +419,6 @@ main {
     border: 1px solid;
     border-color: oklab(0.999994 0.0000455678 0.0000200868 / 0.1);
     border-radius: 14px;
-}
-
-.contacts-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 250px);
-    grid-template-rows: 154px;
-    gap: 24px;
-    max-width: 1280px;
-    margin: 0 auto;
-    justify-content: space-between;
-}
-
-.contact-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid;
-    border-radius: 7px;
-    background-color: oklab(0.999994 0.0000455678 0.0000200868 / 0.05);
-    border-color: oklab(0.999994 0.0000455678 0.0000200868 / 0.1);
-    padding: 24px 16px;
-}
-
-.contact-card:hover {
-    background-color: oklab(100% 0 -0.00011 / 0.123);
-    border-color: oklab(100% 0 -0.00011 / 0.164);
-}
-
-.circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 47px;
-    height: 47px;
-    border-radius: 30px;
-    background-color: #ffffff;
-    transition: all 0.3s ease;
-    transform-origin: center center;
-    will-change: transform;
-}
-
-.contact-card:hover>.circle {
-    transform: scale(1.1);
-    transition: transform 0.3s ease 0.1s;
-    image-rendering: -webkit-optimize-contrast;
-    will-change: transform;
-
-}
-
-.contact-text {
-    text-align: center;
-}
-
-.contact-text>p:first-child {
-    font-size: 14px;
-    margin-bottom: 4px;
-    color: #ffffff;
-}
-
-.contact-text>p:last-child {
-    font-size: 14px;
-    color: oklch(0.704 0.04 256.788);
 }
 
 .contact-send {
@@ -552,6 +489,17 @@ main {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.element-animation {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.element-animation.element-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 
 @media(max-width: 2160px) {
@@ -578,7 +526,7 @@ main {
     .contacts-container {
         display: flex;
         flex-direction: column;
-        width: 896px;
+        width: 600px;
         height: 100%;
         padding: 48px;
         gap: 40px;
@@ -696,6 +644,7 @@ main {
         max-width: 46px;
     }
 }
+
 @media (max-width:950px) {
     .contacts-container {
         display: flex;
@@ -811,6 +760,7 @@ main {
     .navigation {
         display: none;
     }
+
     .contact-card {
         gap: 10px;
     }

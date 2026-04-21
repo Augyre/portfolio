@@ -23,7 +23,7 @@
 
 
         function downloadResume() {
-            const link = document.createElement('a');
+            const link = document.createElement('a');   
             link.href = 'https://augyre.github.io/portfolio/resources/resume/profile.pdf';
             link.download = 'resume.pdf';
             link.target = '_blank';
@@ -31,6 +31,44 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        window.addEventListener('load', () => {
+            if (!sessionStorage.getItem('initialized')) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                history.replaceState(null, null, window.location.pathname + window.location.search);
+                sessionStorage.setItem('initialized', 'true');
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                history.replaceState(null, null, window.location.pathname + window.location.search);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const elements = document.querySelectorAll('.element-animation');
+
+            document.querySelectorAll('.section__title, .card-item, .experience-card, .contact-send').forEach(el => {
+                el.classList.add('element-animation');
+            });
+
+            const allElements = document.querySelectorAll('.element-animation');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('element-show');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            allElements.forEach(el => observer.observe(el));
+        });
+
     </script>
 
     <header class="header">
@@ -44,9 +82,9 @@
 
             <nav class="navigation">
                 <ul class="lists">
-                    <li class="list-item"><a href="#skills" class="blue">Навыки</a></li>
-                    <li class="list-item"><a href="#experience" class="blue">Опыт</a></li>
-                    <li class="list-item"><a href="#contacts" class="blue">Контакты</a></li>
+                    <li class="list-item"><a href="#skills" scroll="skills" class="blue">Навыки</a></li>
+                    <li class="list-item"><a href="#experience" scroll="experience" class="blue">Опыт</a></li>
+                    <li class="list-item"><a href="#contacts" scroll="contacts" class="blue">Контакты</a></li>
                 </ul>
             </nav>
 
@@ -64,7 +102,8 @@
                 <p>Готов к сотрудничеству</p>
             </div>
             <h1>Full-stack Developer</h1>
-            <h3>Начинающий программист с сильным желанием к <br> созданию современных веб-приложений</h3>
+            <h3>Разрабатываю клиент-серверные приложения. <br>
+                Выстраиваю полный цикл: от интерфейса до деплоя.</h3>
             <div class="bages">
                 <div class="bage-item border">Javascript</div>
                 <div class="bage-item border">React</div>
@@ -168,7 +207,8 @@
                         <div class="header-text">
                             <h4>Коммерческая стажировка</h4>
                             <p>Проходил коммерческую стажировку по созданию сайта для HR-менеджеров.
-                                В ходе которого разработал CRUD пользователя, панель авторизации и регистрации, вывод списка кандидатов, а также разработал структуру хранения резюме.
+                                В ходе которого разработал CRUD пользователя, панель авторизации и регистрации, вывод
+                                списка кандидатов, а также разработал структуру хранения резюме.
                             </p>
                         </div>
                     </div>
@@ -190,8 +230,9 @@
                         <div class="header-text">
                             <h4>Дипломный проект</h4>
                             <p>Разработка "Сайта для доставки пиццы" в качестве Backend разработчика.
-                            Реализовал BPMN и SQL схему, отвечал за: маршрутизацию, валидацию, и проверку токенов пользователя,
-                            а также за безопасность включая защиту от Sql-инъекций, XSS и DDos атак.
+                                Реализовал BPMN и SQL схему, отвечал за: маршрутизацию, валидацию, и проверку токенов
+                                пользователя,
+                                а также за безопасность включая защиту от Sql-инъекций, XSS и DDos атак.
                             </p>
                         </div>
                     </div>
@@ -212,7 +253,8 @@
                         <div class="header-text">
                             <h4>Учебные проекты</h4>
                             <p> Разработать подсистему для работы с партнерами через React Native.
-                                Разработал SQL диаграмму , просмотр списков CRUD данных о партнере, вывод текущей скидки по общему количеству продаж,
+                                Разработал SQL диаграмму , просмотр списков CRUD данных о партнере, вывод текущей скидки
+                                по общему количеству продаж,
                                 а также механизм создание новой компании.
                             </p>
                         </div>
@@ -235,36 +277,6 @@
                 <p class="blue">Открыт для новых возможностей и интересных проектов</p>
             </div>
             <div class="contacts-container">
-                <div class="contacts-cards">
-                    <button class="contact-card">
-                        <div class="circle white-cirle">
-                            <img src="resources/img/contacts/telegram.png" alt="">
-                        </div>
-                        <div class="contact-text">
-                            <p>Telegram</p>
-                            <p>@aezakry</p>
-                        </div>
-                    </button>
-                    <button class="contact-card">
-                        <div class="circle gray-circle">
-                            <img src="resources/img/contacts/discord.png" alt="">
-                        </div>
-                        <div class="contact-text">
-                            <p>Discord</p>
-                            <p>@horoshyparen`</p>
-                        </div>
-                    </button>
-                    <button class="contact-card">
-                        <div class="circle gray-plus-circle">
-                            <img src="resources/img/contacts/email.png" alt="">
-                        </div>
-                        <div class="contact-text">
-                            <p>Email</p>
-                            <p>rdlo8679@gmail.com</p>
-                        </div>
-                    </button>
-                </div>
-
                 <div class="contact-send">
                     <p>Готов обсудить ваш проект или возможность сотрудничества</p>
                     <button class="send-btn">
